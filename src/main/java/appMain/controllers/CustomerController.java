@@ -30,7 +30,6 @@ public class CustomerController {
 
     @PostMapping
     public void saveCustomer(@RequestBody Customer customer){
-        customer.setCustomerId(UUID.randomUUID());
         customer.setRegistrationDate(c.getTime());
         customerService.saveCustomer(customer);
     }
