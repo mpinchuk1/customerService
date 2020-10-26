@@ -1,8 +1,10 @@
 package appMain.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
+import java.sql.Date;
 import java.util.UUID;
 
 @Entity
@@ -12,6 +14,7 @@ public class Customer {
     private String firstName;
     private String lastName;
     private Integer age;
+    @JsonFormat(pattern = "MMM dd, yyyy")
     private Date registrationDate;
 
     public Customer(){
@@ -22,7 +25,7 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.registrationDate = new Date();
+        this.registrationDate = new Date(System.currentTimeMillis());
     }
 
     public UUID getCustomerId() {

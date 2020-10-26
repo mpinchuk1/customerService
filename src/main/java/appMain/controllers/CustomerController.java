@@ -6,14 +6,12 @@ import appMain.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.UUID;
+import java.sql.Date;
 
 @RestController
 @RequestMapping("customers")
 public class CustomerController {
     private final CustomerService customerService;
-    private final Calendar c = Calendar.getInstance();
 
     @Autowired
     public CustomerController(CustomerService customerService) {
@@ -30,7 +28,7 @@ public class CustomerController {
 
     @PostMapping
     public void saveCustomer(@RequestBody Customer customer){
-        customer.setRegistrationDate(c.getTime());
+        customer.setRegistrationDate(new Date(System.currentTimeMillis()));
         customerService.saveCustomer(customer);
     }
 }

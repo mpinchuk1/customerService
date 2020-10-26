@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  customerservice:
+    network_mode: bridge
+    container_name: customerservice
+    image: mpinchuk/customerservice:latest
+    build: ./
+    ports:
+      - "8083:8083"
+    environment:
+      - POSTGRES_PASSWORD=4526357
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=customerservice
+      - DB_SERVER=postgresqldb-customer
+    links:
+      - postgresqldb-customer
+
+  postgresqldb-customer:
+    network_mode: bridge
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=4526357
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=customerservice
+    volumes:
+      - postgres-data-customer:D:\Max\projects\A3\volumes\customer
+
+volumes:
+  postgres-data-customer:
