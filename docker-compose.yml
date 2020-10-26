@@ -26,6 +26,5 @@ services:
       - POSTGRES_DB=customerservice
     volumes:
       - postgres-data-customer:D:\Max\projects\A3\volumes\customer
-
 volumes:
   postgres-data-customer:

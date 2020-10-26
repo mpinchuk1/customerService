@@ -42,7 +42,7 @@ spec:
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
-        - name: postgres-data-courier
+        - name: postgres-data-customer
           persistentVolumeClaim:
-            claimName: postgres-data-courier
+            claimName: postgres-data-customer
 status: { }

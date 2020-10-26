@@ -9,10 +9,13 @@ metadata:
     io.kompose.service: customerservice
   name: customerservice
 spec:
+  type: LoadBalancer
   ports:
     - name: "8083"
       port: 8083
       targetPort: 8083
+      nodePort: 30164
+      protocol: TCP
   selector:
     io.kompose.service: customerservice
 status:
