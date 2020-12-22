@@ -1,0 +1,29 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.appMain;
+
+message ProtoCustomer {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  int32 age = 4;
+}
+
+message GetCustomerRequest{
+}
+
+message GetCustomerResponse {
+  repeated ProtoCustomer customers = 1;
+}
+
+message CreateCustomerRequest{
+  ProtoCustomer customer = 1;
+}
+
+message CreateCustomerResponse {
+}
+
+service customerService {
+  rpc get(GetCustomerRequest) returns (GetCustomerResponse);
+  rpc create(CreateCustomerRequest) returns (CreateCustomerResponse);
+}

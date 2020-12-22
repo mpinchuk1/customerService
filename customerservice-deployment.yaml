@@ -1,27 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: customerservice
   name: customerservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: customerservice
-  strategy: { }
+      app: customerservice
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: customerservice
+        app: customerservice
     spec:
       containers:
         - env:
@@ -34,15 +23,9 @@ spec:
             - name: POSTGRES_USER
               value: postgres
           image: mpinchuk/customerservice:latest
-          imagePullPolicy: ""
           name: customerservice
           ports:
             - containerPort: 8083
-          resources: { }
-      restartPolicy: Always
-      serviceAccountName: ""
-      volumes:
-        - name: postgres-data-customer
-          persistentVolumeClaim:
-            claimName: postgres-data-customer
-status: { }
+              name: rest
+            - containerPort: 9090
+              name: grpc
